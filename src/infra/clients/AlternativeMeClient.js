@@ -13,6 +13,9 @@ class AlternativeMeClient {
     return this._axios
       .get("fng")
       .then(({ data }) => {
+        const errors = data.metadata.error
+        if (errors != null) return Err(errors)
+
         const fearAndGreed = data.data[0]
         return Ok(FearAndGreedIndex.fromAlternativeMe(fearAndGreed))
       })
