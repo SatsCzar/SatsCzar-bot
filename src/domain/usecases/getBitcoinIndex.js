@@ -1,10 +1,10 @@
 const { Ok, Err, usecase, step } = require("@herbsjs/herbs")
 const { herbarium } = require("@herbsjs/herbarium")
 const BitcoinIndex = require("../entities/BitcoinIndex")
-const BinanceClient = require("../../infra/clients/BinanceClient")
+const CoinGeckoClient = require("../../infra/clients/CoinGeckoClient")
 
 const dependency = {
-  bitcoinPriceClient: BinanceClient,
+  bitcoinPriceClient: CoinGeckoClient,
 }
 
 const getBitcoinIndex = (injection) =>
