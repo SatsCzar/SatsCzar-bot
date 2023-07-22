@@ -1,6 +1,7 @@
 const { Telegraf } = require("telegraf")
 const config = require("../config")
 const getBitcoinIndex = require("../../domain/usecases/getBitcoinIndex")
+const getFearAndGreedIndex = require("../../domain/usecases/getFearAndGreedIndex")
 
 const runBot = () => {
   const bot = new Telegraf(config.token)
@@ -26,6 +27,24 @@ const runBot = () => {
       const { lastPrice, priceChangePercent } = ucResponse.ok
 
       await ctx.reply(`O preço do Bitcoin é de US$ ${lastPrice} com alteração de ${priceChangePercent}%`)
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
+  bot.command("fearAndGreedIndex", async (ctx) => {
+    try {
+      const usecase = getFearAndGreedIndex()
+
+      await usecase.authorize()
+
+      const ucResponse = await usecase.run()
+
+      if (ucResponse.isErr) await ctx.reply("Erro ao buscar o índice")
+
+      const { value, valueClassification } = ucResponse.ok
+
+      await ctx.reply(`O índice é de ${value} - ${valueClassification}`)
     } catch (error) {
       console.log(error)
     }
