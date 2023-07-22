@@ -32,7 +32,7 @@ const runBot = () => {
     }
   })
 
-  bot.command("fearAndGreedIndex", async (ctx) => {
+  bot.command("fearandgreedindex", async (ctx) => {
     try {
       const usecase = getFearAndGreedIndex()
 
