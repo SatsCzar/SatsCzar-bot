@@ -6,17 +6,6 @@ const BitcoinIndex = entity("BitcoinIndex", {
   priceChangePercent: field(String),
 })
 
-const fromBinance = (data) => {
-  const bitcoinIndex = new BitcoinIndex()
-
-  const lastPrice = Number(data.lastPrice).toFixed(2)
-
-  bitcoinIndex.lastPrice = lastPrice
-  bitcoinIndex.priceChangePercent = data.priceChangePercent
-
-  return bitcoinIndex
-}
-
 const fromCoinGecko = ({ bitcoin }) => {
   const bitcoinIndex = new BitcoinIndex()
 
@@ -27,5 +16,4 @@ const fromCoinGecko = ({ bitcoin }) => {
 }
 
 module.exports = herbarium.entities.add(BitcoinIndex, "BitcoinIndex").entity
-module.exports.fromBinance = fromBinance
 module.exports.fromCoinGecko = fromCoinGecko

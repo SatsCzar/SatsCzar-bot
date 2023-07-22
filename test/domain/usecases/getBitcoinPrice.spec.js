@@ -10,10 +10,12 @@ describe("Usecase getBitcoinPrice", () => {
     bitcoinPriceClient: class {
       getBitcoinPriceAndChange() {
         const data = {
-          lastPrice: "29934.45555",
-          priceChangePercent: "0.061",
+          bitcoin: {
+            usd: "29934",
+            usd_24h_change: 0.112,
+          },
         }
-        return Ok(BitcoinIndex.fromBinance(data))
+        return Ok(BitcoinIndex.fromCoinGecko(data))
       }
     },
   }
