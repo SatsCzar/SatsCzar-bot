@@ -1,5 +1,6 @@
 const { Telegraf } = require("telegraf")
 const config = require("../config")
+const getBitcoinIndex = require("../../domain/usecases/getBitcoinIndex")
 
 const runBot = () => {
   const bot = new Telegraf(config.token)
@@ -14,9 +15,17 @@ const runBot = () => {
 
   bot.command("bitcoin", async (ctx) => {
     try {
-      const precoBitcoin = 125000
+      const usecase = getBitcoinIndex()
 
-      await ctx.reply(`O preço do Bitcoin é: ${precoBitcoin}`)
+      await usecase.authorize()
+
+      const ucResponse = await usecase.run()
+
+      if (ucResponse.isErr) await ctx.reply("Erro ao buscar o preço do Bitcoin")
+
+      const { lastPrice, priceChangePercent } = ucResponse.ok
+
+      await ctx.reply(`O preço do Bitcoin é de US$ ${lastPrice} com alteração de ${priceChangePercent}%`)
     } catch (error) {
       console.log(error)
     }
