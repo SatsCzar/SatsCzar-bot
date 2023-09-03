@@ -19,7 +19,7 @@ describe("Usecase changeClient", () => {
     }
 
     const injection = {
-      clientRepository: mockClientRepository,
+      ClientRepository: mockClientRepository,
     }
 
     const uc = changeClient(injection)
@@ -48,7 +48,7 @@ describe("Usecase changeClient", () => {
     }
 
     const injection = {
-      clientRepository: mockClientRepository,
+      ClientRepository: mockClientRepository,
     }
 
     const uc = changeClient(injection)

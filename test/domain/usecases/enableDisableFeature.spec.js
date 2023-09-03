@@ -5,7 +5,7 @@ const Client = require("../../../src/domain/entities/Client")
 const featuresEnum = require("../../../src/domain/enums/features")
 const ClientRepository = require("../../../src/infra/database/clientRepository")
 
-describe.only("Usecase enableDisableFeature", () => {
+describe("Usecase enableDisableFeature", () => {
   let clientRepositoryMock
   let clientRepositoryConstructor
 
@@ -38,7 +38,7 @@ describe.only("Usecase enableDisableFeature", () => {
 
     clientRepositoryMock.find.returns([clientExample])
 
-    const uc = enableDisableFeature({ clientRepository: clientRepositoryConstructor })
+    const uc = enableDisableFeature({ ClientRepository: clientRepositoryConstructor })
     await uc.authorize()
     const response = await uc.run(params)
 
@@ -62,7 +62,7 @@ describe.only("Usecase enableDisableFeature", () => {
 
     clientRepositoryMock.find.returns([clientWithFeature])
 
-    const uc = enableDisableFeature({ clientRepository: clientRepositoryConstructor })
+    const uc = enableDisableFeature({ ClientRepository: clientRepositoryConstructor })
     await uc.authorize()
     const response = await uc.run(params)
 

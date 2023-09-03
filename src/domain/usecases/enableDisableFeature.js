@@ -5,7 +5,7 @@ const ClientRepository = require("../../infra/database/clientRepository")
 const verifyClient = require("./verifyClient")
 
 const dependency = {
-  clientRepository: ClientRepository,
+  ClientRepository,
   verifyClient,
 }
 
@@ -24,7 +24,7 @@ const enableDisableFeature = (injection) =>
 
     setup: (ctx) => {
       ctx.di = Object.assign({}, dependency, injection)
-      ctx.di.clientRepositoryInstance = new ctx.di.clientRepository()
+      ctx.di.clientRepositoryInstance = new ctx.di.ClientRepository()
       ctx.di.verifyClientUsecase = ctx.di.verifyClient(ctx.di)
       ctx.data = {}
     },

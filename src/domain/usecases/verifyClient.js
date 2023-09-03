@@ -4,7 +4,7 @@ const Client = require("../entities/Client")
 const { herbarium } = require("@herbsjs/herbarium")
 
 const dependency = {
-  clientRepository: ClientRepository,
+  ClientRepository,
 }
 
 const verifyClient = (injection) =>
@@ -20,7 +20,7 @@ const verifyClient = (injection) =>
 
     setup: (ctx) => {
       ctx.di = Object.assign({}, dependency, injection)
-      ctx.di.clientRepositoryInstance = new ctx.di.clientRepository()
+      ctx.di.clientRepositoryInstance = new ctx.di.ClientRepository()
       ctx.data = {}
     },
 
