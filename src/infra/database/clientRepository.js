@@ -14,6 +14,12 @@ class ClientRepository extends Repository {
       mongodb: connection,
     })
   }
+
+  async findAllByFeature(feature) {
+    return this.find({
+      filter: { features: feature },
+    })
+  }
 }
 
 module.exports = herbarium.repositories
