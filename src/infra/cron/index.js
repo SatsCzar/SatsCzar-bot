@@ -4,6 +4,7 @@ const cronValidator = require("cron-validator")
 const cronsTrue = require("cronstrue/i18n")
 const { CronJob } = require("cron")
 const config = require("../config")
+const sendBitcoinPrice = require("./sendBitcoinPrice")
 
 const cronSchedule = config.cron.cronSchedule
 
@@ -21,7 +22,7 @@ const cronJobs = (bot) => {
   new CronJob(
     cronSchedule,
     async () => {
-      await bot.telegram.sendMessage(config.ownerChatId, "RODOU !!!")
+      await sendBitcoinPrice(bot)
     },
     null,
     null,
