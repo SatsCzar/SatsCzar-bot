@@ -105,11 +105,15 @@ const runBot = () => {
         return
       }
 
-      await ctx.reply(`Olá ${name}, este chat ainda não está cadastrado`, {
-        reply_markup: {
-          inline_keyboard: [botButtons.register],
+      await ctx.reply(
+        `Olá ${name}, este chat ainda não está cadastrado\nAo se cadastrar, você concorda com nossa [política de privacidade](https://satsczar.top/politica-de-privacidade.html)`,
+        {
+          parse_mode: "Markdown",
+          reply_markup: {
+            inline_keyboard: [botButtons.register],
+          },
         },
-      })
+      )
     } catch (error) {
       console.log(error)
     }
