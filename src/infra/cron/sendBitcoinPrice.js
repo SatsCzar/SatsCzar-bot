@@ -16,6 +16,7 @@ const sendBitcoinPrice = async (bot) => {
     const priceUseCaseResult = await priceUseCase.run()
 
     if (priceUseCaseResult.isErr) {
+      console.log(`Error in getBitcoinIndex: ${sendMessageUcResult.err}`)
       await enviaMensagemErro(bot, priceUseCaseResult.err)
       return
     }
@@ -34,6 +35,7 @@ const sendBitcoinPrice = async (bot) => {
     })
 
     if (sendMessageUcResult.isErr) {
+      console.log(`Error in sendBitcoinPrice: ${sendMessageUcResult.err}`)
       await enviaMensagemErro(bot, sendMessageUcResult.err)
       return
     }

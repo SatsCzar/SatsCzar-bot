@@ -22,6 +22,7 @@ const cronJobs = (bot) => {
   new CronJob(
     cronSchedule,
     async () => {
+      console.log("CronJob disparado")
       await sendBitcoinPrice(bot)
     },
     null,
