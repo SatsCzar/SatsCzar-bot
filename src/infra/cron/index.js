@@ -19,16 +19,14 @@ const cronJobs = (bot) => {
 
   if (!isCronScheduleValid) throw new Error(`Expressão ${cronSchedule} inválida`)
 
-  new CronJob(
-    cronSchedule,
-    async () => {
+  new CronJob({
+    cronTime: cronSchedule,
+    onTick: async () => {
       console.log("CronJob disparado")
       await sendBitcoinPrice(bot)
     },
-    null,
-    null,
-    "America/Sao_Paulo",
-  )
+    timeZone: "America/Sao_Paulo",
+  })
 
   const cronPortuguese = cronsTrue.toString(cronSchedule, { locale: "pt_BR" })
 
